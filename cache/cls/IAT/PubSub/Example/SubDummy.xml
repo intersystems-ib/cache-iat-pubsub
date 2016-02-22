@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export generator="Cache" version="25">
+<Class name="IAT.PubSub.Example.SubDummy">
+<Description>
+Subscriber for Patient channel</Description>
+<Super>IAT.PubSub.Subscriber</Super>
+<TimeCreated>63881,45058.026622</TimeCreated>
+
+<Method name="OnMessage">
+<Description>
+Callback that is called when a message is received by subscriber</Description>
+<FormalSpec>pBody:IAT.PubSub.Example.MsgDummy</FormalSpec>
+<ReturnType>%Status</ReturnType>
+<Implementation><![CDATA[
+	set ret = $$$OK
+	try {
+		$$$LOG("MsgDummy. ID="_pBody.%Id()_" Text="_pBody.Text)
+	} catch ex {
+		set ret = ex.AsStatus()
+	}
+	quit ret
+]]></Implementation>
+</Method>
+</Class>
+</Export>

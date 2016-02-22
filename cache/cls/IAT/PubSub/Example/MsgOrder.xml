@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export generator="Cache" version="25">
+<Class name="IAT.PubSub.Example.MsgOrder">
+<Super>IAT.PubSub.MsgBody</Super>
+<TimeCreated>63881,39933.62689</TimeCreated>
+
+<Property name="Number">
+<Type>%String</Type>
+</Property>
+
+<Property name="Description">
+<Type>%String</Type>
+</Property>
+
+<Storage name="Default">
+<Type>%Library.CacheStorage</Type>
+<DefaultData>MsgOrderDefaultData</DefaultData>
+<Data name="MsgOrderDefaultData">
+<Subscript>"MsgOrder"</Subscript>
+<Value name="1">
+<Value>Number</Value>
+</Value>
+<Value name="2">
+<Value>Description</Value>
+</Value>
+</Data>
+</Storage>
+</Class>
+</Export>

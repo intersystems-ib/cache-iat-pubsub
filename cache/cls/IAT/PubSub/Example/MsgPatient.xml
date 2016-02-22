@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export generator="Cache" version="25">
+<Class name="IAT.PubSub.Example.MsgPatient">
+<Description>
+Example of message used for Patient channel</Description>
+<Super>IAT.PubSub.MsgBody</Super>
+<TimeCreated>63881,39933.62689</TimeCreated>
+
+<Property name="MRN">
+<Type>%String</Type>
+</Property>
+
+<Property name="Name">
+<Type>%String</Type>
+</Property>
+
+<Property name="LastName">
+<Type>%String</Type>
+</Property>
+
+<Property name="DOB">
+<Type>%String</Type>
+</Property>
+
+<Storage name="Default">
+<Type>%Library.CacheStorage</Type>
+<DefaultData>MsgPatientDefaultData</DefaultData>
+<Data name="MsgPatientDefaultData">
+<Subscript>"MsgPatient"</Subscript>
+<Value name="1">
+<Value>MRN</Value>
+</Value>
+<Value name="2">
+<Value>Name</Value>
+</Value>
+<Value name="3">
+<Value>LastName</Value>
+</Value>
+<Value name="4">
+<Value>DOB</Value>
+</Value>
+</Data>
+</Storage>
+</Class>
+</Export>

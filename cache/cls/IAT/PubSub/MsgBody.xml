@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export generator="Cache" version="25">
+<Class name="IAT.PubSub.MsgBody">
+<Description>
+Generic message body for Publisher-Subscriber system.
+All messages MUST extend from this class.</Description>
+<Super>%Persistent</Super>
+<TimeCreated>63881,39434.848004</TimeCreated>
+
+<Storage name="Default">
+<Type>%Library.CacheStorage</Type>
+<DataLocation>^IAT.PubSub.MsgBodyD</DataLocation>
+<DefaultData>MsgBodyDefaultData</DefaultData>
+<IdLocation>^IAT.PubSub.MsgBodyD</IdLocation>
+<IndexLocation>^IAT.PubSub.MsgBodyI</IndexLocation>
+<StreamLocation>^IAT.PubSub.MsgBodyS</StreamLocation>
+<Data name="MsgBodyDefaultData">
+<Value name="1">
+<Value>%%CLASSNAME</Value>
+</Value>
+</Data>
+</Storage>
+</Class>
+</Export>

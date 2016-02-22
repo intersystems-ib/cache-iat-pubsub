@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export generator="Cache" version="25">
+<Class name="IAT.PubSub.MsgHeader">
+<Description>
+Message header for Publisher-Subscriber system.</Description>
+<Super>%Persistent</Super>
+<TimeCreated>63881,39322.970473</TimeCreated>
+
+<Property name="BodyClass">
+<Description>
+Classname of the body referenced by this header. </Description>
+<Type>%String</Type>
+<Parameter name="MAXLEN"/>
+</Property>
+
+<Property name="BodyId">
+<Description>
+ID of the body referenced by this header.</Description>
+<Type>%String</Type>
+</Property>
+
+<Method name="%OnNew">
+<Description>
+Create a MsgHeader from a given MsgBody</Description>
+<FormalSpec>pBody:MsgBody</FormalSpec>
+<Private>1</Private>
+<ReturnType>%Status</ReturnType>
+<ServerOnly>1</ServerOnly>
+<Implementation><![CDATA[
+	set ret = $$$OK
+	try {
+		if $isobject(pBody) {
+			set ..BodyClass = $classname(pBody)
+			set ..BodyId = pBody.%Id()
+		}
+	} catch ex {
+		set ret = ex.AsStatus()
+	}
+	quit ret
+]]></Implementation>
+</Method>
+
+<Storage name="Default">
+<Type>%Library.CacheStorage</Type>
+<DataLocation>^IAT.PubSub.MsgHeaderD</DataLocation>
+<DefaultData>MsgHeaderDefaultData</DefaultData>
+<IdLocation>^IAT.PubSub.MsgHeaderD</IdLocation>
+<IndexLocation>^IAT.PubSub.MsgHeaderI</IndexLocation>
+<StreamLocation>^IAT.PubSub.MsgHeaderS</StreamLocation>
+<Data name="MsgHeaderDefaultData">
+<Value name="1">
+<Value>%%CLASSNAME</Value>
+</Value>
+<Value name="2">
+<Value>BodyClass</Value>
+</Value>
+<Value name="3">
+<Value>BodyId</Value>
+</Value>
+</Data>
+</Storage>
+</Class>
+</Export>

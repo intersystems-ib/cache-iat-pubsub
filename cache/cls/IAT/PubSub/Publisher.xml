@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export generator="Cache" version="25">
+<Class name="IAT.PubSub.Publisher">
+<Description>
+Simple generic publisher</Description>
+<IncludeCode>IAT.PubSub</IncludeCode>
+<Super>%RegisteredObject</Super>
+<TimeCreated>63881,57066.969631</TimeCreated>
+
+<Method name="Send">
+<Description>
+Send a message body to a channel</Description>
+<ClassMethod>1</ClassMethod>
+<FormalSpec>pChannel:%String,pBody:MsgBody</FormalSpec>
+<ReturnType>%Status</ReturnType>
+<Implementation><![CDATA[
+	set ret = $$$OK
+	try {
+		set header = ##class(MsgHeader).%New(pBody)
+		$$$ThrowOnError(header.%Save())
+		set id = header.%Id()
+		
+		set $$$Queue(pChannel,id)=""
+		do $system.Event.Signal($$$ResourceName(pChannel),id)
+	} catch ex {
+		set ret = ex.AsStatus()
+	}
+	quit ret
+]]></Implementation>
+</Method>
+</Class>
+</Export>
