@@ -50,3 +50,8 @@ There are several points of this example that can be discussed as an exercise:
 #### Multiple types of subscribers
 * In *IAT.PubSub.Publisher:Send()* method, it simply creates a message header, save it to queue and send a signal to one of the subscribers.
 * It would be interesting allowing more than one type of subscriber per channel. In this case, the *Send()* method should create several message headers and signal the different types of configured subscribers.
+
+# Developer Community
+Have a look at [InterSystems Developer Community](https://community.intersystems.com/) to learn about InterSystems technology, sharing solutions and staying up-to-date on the latest developments.
+
+This example was published in https://community.intersystems.com/post/simple-systemevent-examples
