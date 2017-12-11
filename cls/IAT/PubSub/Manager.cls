@@ -1,23 +1,18 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Export generator="Cache" version="25">
-<Class name="IAT.PubSub.Manager">
-<Description>
-Publisher-Subscriber manager </Description>
-<IncludeCode>IAT.PubSub</IncludeCode>
-<Super>%RegisteredObject</Super>
-<TimeCreated>63881,37372.727726</TimeCreated>
+Include IAT.PubSub
 
-<Method name="Setup">
-<Description>
-Setup Publisher-Subscriber system as specified in $$$Config global.
-This method can be called periodically to check that jobs are running as configured.
-Configuration global is expected to be like:
-$$$Config(CHANNEL, "Subscriber", SUBSCRIBERSUBCLASS) = NUMBEROFPROCESSES
- CHANNEL = channel name
- SUBSCRIBERSUBCLASS = full name of the subscriber class (must extend from Subscriber)
- NUMBEROFPROCESSES = number of processes that will be running subscriber class</Description>
-<ClassMethod>1</ClassMethod>
-<Implementation><![CDATA[
+/// Publisher-Subscriber manager 
+Class IAT.PubSub.Manager Extends %RegisteredObject
+{
+
+/// Setup Publisher-Subscriber system as specified in $$$Config global.
+/// This method can be called periodically to check that jobs are running as configured.
+/// Configuration global is expected to be like:
+/// $$$Config(CHANNEL, "Subscriber", SUBSCRIBERSUBCLASS) = NUMBEROFPROCESSES
+///  CHANNEL = channel name
+///  SUBSCRIBERSUBCLASS = full name of the subscriber class (must extend from Subscriber)
+///  NUMBEROFPROCESSES = number of processes that will be running subscriber class
+ClassMethod Setup()
+{
 	set ret = $$$OK
 	try {
 		set channel=""
@@ -31,17 +26,12 @@ $$$Config(CHANNEL, "Subscriber", SUBSCRIBERSUBCLASS) = NUMBEROFPROCESSES
 		set ret = ex.AsStatus()
 	}
 	quit ret
-]]></Implementation>
-</Method>
+}
 
-<Method name="AddChannel">
-<Description>
-Add a channel. 
-It must be configured in $$$Config global.</Description>
-<ClassMethod>1</ClassMethod>
-<FormalSpec>pChannel:%String</FormalSpec>
-<ReturnType>%Status</ReturnType>
-<Implementation><![CDATA[
+/// Add a channel. 
+/// It must be configured in $$$Config global.
+ClassMethod AddChannel(pChannel As %String) As %Status
+{
 	set ret = $$$OK
 	try {
 		$$$LOG("channel="_pChannel)
@@ -58,17 +48,12 @@ It must be configured in $$$Config global.</Description>
 		set ret = ex.AsStatus()
 	}
 	quit ret
-]]></Implementation>
-</Method>
+}
 
-<Method name="AddSubscriber">
-<Description>
-Add a subscriber to a channel with a number of processes.
-It must be configured in $$$Config global.</Description>
-<ClassMethod>1</ClassMethod>
-<FormalSpec>pChannel:%String,pSubscriber:%String,pNumJobs:%Integer</FormalSpec>
-<ReturnType>%Status</ReturnType>
-<Implementation><![CDATA[
+/// Add a subscriber to a channel with a number of processes.
+/// It must be configured in $$$Config global.
+ClassMethod AddSubscriber(pChannel As %String, pSubscriber As %String, pNumJobs As %Integer) As %Status
+{
 	set ret = $$$OK
 	try {
 		// check dead, running subscriber jobs for channel
@@ -109,14 +94,11 @@ It must be configured in $$$Config global.</Description>
 		set ret = ex.AsStatus()
 	}
 	quit ret
-]]></Implementation>
-</Method>
+}
 
-<Method name="TerminateAll">
-<Description>
-Terminate all running subscriber jobs.</Description>
-<ClassMethod>1</ClassMethod>
-<Implementation><![CDATA[
+/// Terminate all running subscriber jobs.
+ClassMethod TerminateAll()
+{
 	set ret = $$$OK
 	try {
 		set job=""
@@ -129,16 +111,11 @@ Terminate all running subscriber jobs.</Description>
 		set ret = ex.AsStatus()
 	}
 	quit ret
-]]></Implementation>
-</Method>
+}
 
-<Method name="Terminate">
-<Description>
-Terminate a specific subscriber job.</Description>
-<ClassMethod>1</ClassMethod>
-<FormalSpec>pJob:%String</FormalSpec>
-<ReturnType>%Status</ReturnType>
-<Implementation><![CDATA[
+/// Terminate a specific subscriber job.
+ClassMethod Terminate(pJob As %String) As %Status
+{
 	set ret = $$$OK
 	try {
 		$$$LOG(pJob)
@@ -148,15 +125,12 @@ Terminate a specific subscriber job.</Description>
 		set ret = ex.AsStatus()
 	}
 	quit ret
-]]></Implementation>
-</Method>
+}
 
-<Method name="RestartQueue">
-<Description>
-Loop over $$$Queue and notify subscriber processes.
-This method should be used ONLY when system has been shut down and event queue must be reprocessed.</Description>
-<ClassMethod>1</ClassMethod>
-<Implementation><![CDATA[
+/// Loop over $$$Queue and notify subscriber processes.
+/// This method should be used ONLY when system has been shut down and event queue must be reprocessed.
+ClassMethod RestartQueue()
+{
 	set ret = $$$OK
 	try {
 		set channel=""
@@ -178,16 +152,11 @@ This method should be used ONLY when system has been shut down and event queue m
 		set ret = ex.AsStatus()
 	}
 	quit ret
-]]></Implementation>
-</Method>
+}
 
-<Method name="CleanJob">
-<Description>
-Clean saved data for a job in Publisher-Subscriber data structures. </Description>
-<ClassMethod>1</ClassMethod>
-<FormalSpec>pJob:%String</FormalSpec>
-<ReturnType>%Status</ReturnType>
-<Implementation><![CDATA[
+/// Clean saved data for a job in Publisher-Subscriber data structures. 
+ClassMethod CleanJob(pJob As %String) As %Status
+{
 	set ret = $$$OK
 	try {
 		set channel = $get($$$StatusJob(pJob, "Channel"))
@@ -200,7 +169,7 @@ Clean saved data for a job in Publisher-Subscriber data structures. </Descriptio
 		set ret = ex.AsStatus()
 	}
 	quit ret
-]]></Implementation>
-</Method>
-</Class>
-</Export>
+}
+
+}
+
